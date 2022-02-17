@@ -1,0 +1,236 @@
+/* Regular Header styles */
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px -0.9rem 0.3rem 1rem rgb(221, 214, 214);
+}
+
+.leftHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 50%;
+    background-color: var(--primary-clr);
+    margin: 0 2rem;
+}
+
+.navBar {
+    font-family: var(--poppins-font);
+    font-weight: 400;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navLink {
+    padding: 2rem 0;
+    margin: 0 1.5rem;
+    color: var(--dark-clr);
+    cursor: pointer;
+}
+
+.findStoreButtonContainer {
+    padding-right: 8rem;
+    padding-left: 3rem;
+}
+
+.findStoreButton {
+    font-family: var(--poppins-font);
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Hamburger Menu Styles */
+
+.navButtonContainer {
+    padding: 2rem 3rem;
+}
+
+.navButton {
+    cursor: pointer;
+    padding: 0.4rem 0;
+}
+
+.navButton div {
+    width: 1.4rem;
+    height: 0.15rem;
+    background-color: var(--dark-clr);
+    border-radius: 3px;
+}
+
+.barOne {
+    transform: translateY(-0.4rem);
+}
+
+.barThree {
+    transform: translateY(0.4rem);
+}
+
+.hamburgerMenuNav {
+    margin-left: 15vw;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--poppins-font);
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+
+.navLinkHamburger {
+    cursor: pointer;
+    padding-top: 2rem;
+    padding-left: 3rem;
+}
+
+/* Body Styling */
+
+.frameContainer, .frameContainerReverse {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary-clr);
+    margin: 2rem 0;
+}
+
+.frameTextContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--light-clr);
+    font-family: var(--poppins-font);
+}
+
+.frameTextTitle, .halfFrameTextTitle {
+    text-align: center;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.frameTextBody {
+    font-weight: 300;
+    text-align: center;
+    padding: 2rem;
+}
+
+.photo {
+    max-width: 100%;
+}
+
+.frameTextButton {
+    cursor: pointer;
+    background: none;
+    color: var(--light-clr);
+    border: solid 1px var(--light-clr);
+    padding: 0.8rem 1.8rem;
+    border-radius: 3rem;
+}
+
+.frameTextButton:hover {
+    background-color: var(--clear-light-clr);
+}
+
+.halfFrameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.halfFrame {
+    background-color: var(--primary-clr);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.halfFramePhoto {
+    max-width: 100%;
+}
+
+.halfFrameTextContainer {
+    text-align: center;
+    padding: 3rem;
+    font-family: var(--poppins-font);
+    color: var(--dark-clr);
+}
+
+.halfFrameTextTitle {
+    color: var(--primary-clr);
+}
+
+/* Footer styles */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0.95rem 0.3rem 1rem rgb(221, 214, 214);
+    padding: 3rem;
+}
+
+.footerList {
+    font-family: var(--poppins-font);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+    align-items: flex-start;
+}
+
+.footerTitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0.5rem 0rem;
+}
+
+.footerLink {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0.5rem 0;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 900px) {
+    .frameContainer {
+        flex-direction: row-reverse;
+    }
+
+    .frameContainerReverse {
+        flex-direction: row;
+    }
+
+    .photo {
+        max-width: 50%;
+    }
+
+    .halfFrameContainer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .footer {
+        flex-direction: row;
+    }
+
+    .footerList {
+        padding: 0rem 4rem;
+    }
+}
