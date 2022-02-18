@@ -1,14 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/SquarePage.module.css";
 import bluePhotoRectangle from "../assets/BluePhotoRectangle.jpg";
 import blueOrangeSquare from "../assets/BlueOrangeSquare.jpg";
 import purpleWide from "../assets/PurpleWide.jpg";
 
 const SquarePage = () => {
-    const [hamburgerMenu,setHamburgerMenu] = useState(false);
+    const minWidth = 900;
+    const [windowWidth,setWindowWidth] = useState(window.innerWidth);
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
+
+    useEffect(()=>{
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    },[])
+
     return (
         <div className={styles.mainContainer}>
-            {hamburgerMenu ? <HamburgerMenu/> : <RegularHeader/>}
+            {windowWidth < minWidth ? <HamburgerMenu/> : <RegularHeader/>}
             <div className={styles.frameContainer}>
                 <img src={bluePhotoRectangle} alt="" className={styles.photo}/>
                 <div className={styles.frameTextContainer}>
@@ -70,24 +81,67 @@ const SquarePage = () => {
 };
 
 const HamburgerMenu = () => {
+    const [burgerMenuOn,setBurgerMenuOn] = useState(false);
+    const [firstRender,setFirstRender] = useState(true);
+    const [moveMenu,setMoveMenu] = useState({
+        "left": "false",
+        "right": "false"
+    });
+    useEffect(()=>{
+        if (!firstRender) {
+            if (burgerMenuOn) {
+                setMoveMenu((prevMove) => ({
+                    "left": "true",
+                    "right": "false"
+                }));
+            } else {
+                setMoveMenu((prevMove) => ({
+                    "left": "false",
+                    "right": "true"
+                }));
+            }
+        }
+    },[burgerMenuOn]);
+    const handleBurgerMenu = () => {
+        setBurgerMenuOn((prev) => !prev);
+        setFirstRender(false);
+    };
     return (
         <div className={styles.headerContainer}>
             <div className={styles.header}>
                 <div className={styles.logo}></div>
                 <div className={styles.navButtonContainer}>
-                    <div className={styles.navButton}>
+                    <div className={styles.navButton} onClick={handleBurgerMenu} >
                         <div className={styles.barOne}></div>
                         <div className={styles.barTwo}></div>
                         <div className={styles.barThree}></div>
                     </div>
                 </div>
             </div>
-            {/* <nav className={styles.hamburgerMenuNav}>
-                <div className={styles.navLinkHamburger}>PAGE</div>
-                <div className={styles.navLinkHamburger}>PAGE</div>
-                <div className={styles.navLinkHamburger}>PAGE</div>
-            </nav> */}
+            <BurgerNav moveMenu={moveMenu} setMoveMenu={setMoveMenu} burgerMenuOn={burgerMenuOn}/>
         </div>
+    );
+};
+
+const BurgerNav = ({burgerMenuOn,moveMenu,setMoveMenu}) => {
+    const handleAnimationEnd = () => {
+        setMoveMenu({
+            "left": "false",
+            "right": "false"
+        });
+    };
+    // onAnimationEnd={handleAnimationEnd}
+    return (
+        <nav className={styles.hamburgerMenuNav}
+        // <nav className={burgerMenuOn ? styles.hamburgerMenuNav : styles.hamburgerMenuNavOff} 
+         data-movemenuleft={moveMenu.left} data-movemenuright={moveMenu.right}>
+            <div className={styles.navLinkHamburger}>PAGE</div>
+            <div className={styles.navLinkHamburger}>PAGE</div>
+            <div className={styles.navLinkHamburger}>PAGE</div>
+            <div className={styles.navLinkHamburger}>
+                <button className={styles.findStoreButton}>Find a store</button>
+            </div>
+        </nav>
     );
 };
 

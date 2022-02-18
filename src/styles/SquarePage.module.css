@@ -1,6 +1,8 @@
 /* Regular Header styles */
 
 .header {
+    position: relative;
+    z-index: 10;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -80,19 +82,52 @@
     transform: translateY(0.4rem);
 }
 
-.hamburgerMenuNav {
-    margin-left: 15vw;
+.hamburgerMenuNav, .hamburgerMenuNavOff {
+    position: absolute;
+    z-index: 5;
+    background-color: white;
+    width: 100%;
     display: flex;
     flex-direction: column;
     font-family: var(--poppins-font);
     font-weight: 400;
     font-size: 1.1rem;
+    transform: translateX(100%);
+}
+
+/* .hamburgerMenuNavOff {
+    transform: translateX(100%);
+} */
+
+.hamburgerMenuNav[data-movemenuleft = "true"]{
+    animation: moveLeft 0.3s linear 0s 1 forwards;
+}
+
+.hamburgerMenuNav[data-movemenuright = "true"]{
+    animation: moveRight 0.3s linear 0s 1 forwards;
+}
+
+@keyframes moveLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .navLinkHamburger {
     cursor: pointer;
-    padding-top: 2rem;
-    padding-left: 3rem;
+    padding: 1rem 3rem;
 }
 
 /* Body Styling */
